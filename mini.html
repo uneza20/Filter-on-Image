@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Project Of Different Filters On Uploaded Image</title>
+<link rel="stylesheet" href="STYLE.css">
+</head>
+<body>
+  <center>
+    <h3>Mini Project Of Different Filters On Uploaded Image</h3>
+
+    <canvas id="can"></canvas>
+
+    <p><input type="file" multiple="false" accept="image/*" id="fil" onchange="fileupload()"></p>
+
+    <p>
+      <input type="button" value="Make Gray" id="greybut" onclick="makegray()">
+      <input type="button" value="Make Red" id="redbut" onclick="makeRed()">
+      <input type="button" value="Reset" id="resetbut" onclick="makereset()">
+    </p>
+  </center>
+
+  <script>
+    function fileupload() {
+      var fileInput = document.getElementById("fil");
+      var canvas = document.getElementById("can");
+      var context = canvas.getContext("2d");
+      var img = new Image();
+
+      img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        context.drawImage(img, 0, 0);
+      };
+
+      img.src = URL.createObjectURL(fileInput.files[0]);
+    }
+
+    function makegray() {
+      var canvas = document.getElementById("can");
+      var context = canvas.getContext("2d");
+      var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+
+      for (var i = 0; i < data.length; i += 4) {
+        var avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+        data[i] = avg; // Red channel
+        data[i + 1] = avg; // Green channel
+        data[i + 2] = avg; // Blue channel
+      }
+
+      context.putImageData(imageData, 0, 0);
+    }
+
+    function makeRed() {
+      var canvas = document.getElementById("can");
+      var context = canvas.getContext("2d");
+      var imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+      var data = imageData.data;
+
+      for (var i = 0; i < data.length; i += 4) {
+        data[i] = 255; // Set red channel to maximum
+      }
+
+      context.putImageData(imageData, 0, 0);
+    }
+
+    function makereset() {
+      var canvas = document.getElementById("can");
+      var context = canvas.getContext("2d");
+      context.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+body {
+  background-color: #ff99cc;
+  font-family: Gabriola;
+  margin: 40px;
+  font-size: 30px;
+}
+
+canvas {
+  border: 7px solid black;
+  height: 200px;
+}
+
+input {
+  font-size: 12pt;
+  font-family: Gabriola;
+}
+
+#fil {
+  width: 110px;
+  margin: 5px;
+  
+}
+
+#greybut {
+  width: 110px;
+  margin: 5px;
+}
+
+#greybut:hover {
+  background-color: #ff3399;
+  color: black;
+  border: 4px solid black;
+}
+
+#redbut:hover {
+  background-color: #ff3399;
+  color: black;
+  border: 4px solid black;
+}
+
+#resetbut:hover {
+  background-color: #ff3399;
+  color: black;
+  border: 4px solid black;
+}
+
+#redbut {
+  width: 110px;
+  margin: 5px;
+}
+
+#resetbut {
+  width: 110px;
+  margin: 5px;
+}
